@@ -67,11 +67,17 @@ ${formData.message}`;
     setSending(true);
     setApiErrorMessage('');
 
-    // Official Web3Forms submission using FormData (required by Web3Forms free tier)
-    if (PERSONAL_INFO.web3formsAccessKey) {
+    // Official PERSONAL_INFO.web3foForms submission using FormData (required by Web3Forms free tier)
+   
+   const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+
+console.log("Key exists:", !!accessKey);
+console.log("Key length:", accessKey?.length);
+
+if (accessKey) {
       try {
         const formDataToSend = new FormData();
-        formDataToSend.append('access_key', PERSONAL_INFO.web3formsAccessKey);
+        formDataToSend.append('access_key', accessKey);
         formDataToSend.append('name', formData.name);
         formDataToSend.append('email', formData.email);
         formDataToSend.append('subject', formData.subject || `Portfolio Contact Inquiry from ${formData.name}`);
